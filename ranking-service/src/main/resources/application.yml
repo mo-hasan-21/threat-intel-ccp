@@ -1,0 +1,27 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: ranking-service
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: ranking-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+
+ranking:
+  api:
+    url: https://api.example.com/v1/rank
+    timeout: 5000
+
+logging:
+  level:
+    org.springframework.kafka: INFO
+    com.pafiast: DEBUG
